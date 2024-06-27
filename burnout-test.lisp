@@ -1,16 +1,33 @@
 (defpackage :burnout-test
-  (:use :common-lisp :capi))
+  (:use :cl)
+  (:export :main))
 
 (in-package :burnout-test)
 
-(defun create-simple-window ()
-  (capi:contain (make-instance 'capi:interface
-                               :title "Burnout Test"
-                               :layout (make-instance 'capi:column-layout
-                                                      :description (list (make-instance 'capi:text-input-pane
-                                                                                        :text "Welcome to the Burnout Test"))))))
+(defun print-welcome-message ()
+  "Prints the welcome message for the burnout test program."
+  (format t "====================================~%")
+  (format t "        Burnout Test Program         ~%")
+  (format t "====================================~%"))
+
+(defun read-name ()
+  "Prompt the user to enter their name and return it as a string."
+  (format t "Please enter your name: ")
+  (finish-output)
+  (read-line))
 
 (defun main ()
-  (create-simple-window))
+  "Main function for the burnout test program."
+  (print-welcome-message)
+  (let ((name (read-name)))
+    (format t "Hello, ~a! Welcome to the Burnout Test Program.~%~%" name)
+    ;; burn out test start
+    (format t "Press any key to exit...")
+    (finish-output)
+    (read-line)))  ;;
 
-(main)
+;; create exe file
+(sb-ext:save-lisp-and-die "burnout-test.exe"
+                          :executable t
+                          :toplevel 'burnout-test:main
+                          :purify t)
