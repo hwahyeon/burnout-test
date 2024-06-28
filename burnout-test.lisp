@@ -19,10 +19,13 @@
   (format t "====================================~%"))
 
 (defun read-name ()
-  "Prompt the user to enter their name and return it as a string."
+  "Prompt the user to enter their name and return it as a string. Default to 'Anonymous' if no input is provided."
   (format t "Please enter your name: ")
   (finish-output)
-  (read-line))
+  (let ((name (string-trim " " (read-line))))
+    (if (string= name "")
+        "Anonymous"
+        name)))
 
 (defun ask-question (question number inverse-scoring)
   "Prompt the user with a question and return a valid numeric response."
