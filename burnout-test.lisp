@@ -51,13 +51,13 @@
 (defun work-related-burnout-questions ()
   "Ask work-related burnout questions and return the responses."
   (list
-   (ask-question "Is your work emotionally exhausting?" "7.")
-   (ask-question "Do you feel burnt out because of your work?" "8.")
-   (ask-question "Does your work frustrate you?" "9.")
-   (ask-question "Do you feel worn out at the end of the working day?" "10.")
-   (ask-question "Are you exhausted in the morning at the thought of another day at work?" "11.")
-   (ask-question "Do you feel that every working hour is tiring for you?" "12.")
-   (ask-question "Do you have enough energy for family and friends during leisure time?" "13.")))
+   (ask-question "Do you feel worn out at the end of the working day?" "7.")
+   (ask-question "Are you exhausted in the morning at the thought of another day at work?" "8.")
+   (ask-question "Do you feel that every working hour is tiring for you?" "9.")
+   (ask-question "Do you have enough energy for family and friends during leisure time? (inverse scoring)" "10.")
+   (ask-question "Is your work emotionally exhausting?" "11.")
+   (ask-question "Does your work frustrate you?" "12.")
+   (ask-question "Do you feel burnt out because of your work?" "13.")))
 
 (defun client-related-burnout-questions ()
   "Ask client-related burnout questions and return the responses."
@@ -76,9 +76,11 @@
 (defun interpret-cbi-score (score)
   "Interpret the CBI score and print the corresponding message."
   (cond
-    ((<= score 2) "Low burnout")
-    ((<= score 3.5) "Moderate burnout")
-    ((<= score 5) "High burnout")
+    ((<= score 1.49) "Very Low")
+    ((<= score 2.49) "Low")
+    ((<= score 3.49) "Moderate")
+    ((<= score 4.49) "High")
+    ((<= score 5) "Very High")
     (t "Invalid score")))
 
 (defun main ()
