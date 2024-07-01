@@ -22,18 +22,27 @@
   (format t "Type 'back' to go to the previous question.~%")
   (format t "====================================~%"))
 
+(defun read-input (prompt &optional (default ""))
+  "Reads input from the user with a given prompt. Returns the input or a default value if the input is empty."
+  (format t "~a" prompt)
+  (finish-output)
+  (let ((input (string-trim " " (read-line))))
+    (if (string= input "") default input)))
+
 (defun read-name ()
   "Prompt the user to enter their name and return it as a string. Default to 'Anonymous' if no input is provided."
-  (format t "Please enter your name: ")
-  (finish-output)
-  (let ((name (string-trim " " (read-line))))
-    (if (string= name "")
-        "Anonymous"
-        name)))
+  (read-input "Please enter your name: " "Anonymous"))
 
 (defun clear-screen ()
   "Clears the terminal screen."
   (format t "~c[2J~c[H" #\esc #\esc))
+
+(defun valid-response-p (response)
+  "Check if the response is valid (between 1 and 5 or 'back')."
+  (or (string= response "back")
+      (and (every #'digit-char-p response)
+           (let ((num (parse-integer response)))
+             (and (>= num 1) (<= num 5))))))
 
 (defun ask-question (question number &optional (inverse-scoring nil))
   "Prompt the user with a question and return a valid numeric response."
@@ -42,25 +51,21 @@
      (format t "~&~a~a~%    1. Never/almost never~%    2. Seldom~%    3. Sometimes~%    4. Often~%    5. Always~%Your answer (or type 'back' to go to the previous question): " number question)
      (finish-output)
      (let ((response (string-trim " " (read-line))))
-       (cond
-         ((string= response "back")
-          (return-from ask-question :back))
-         ((and (not (string= response ""))
-               (every #'digit-char-p response)
-               (let ((num (parse-integer response)))
-                 (and (>= num 1) (<= num 5))))
-          (return-from ask-question (let ((score (case (parse-integer response)
-                                                   (1 0)
-                                                   (2 25)
-                                                   (3 50)
-                                                   (4 75)
-                                                   (5 100))))
-                                      (if inverse-scoring
-                                          (- 100 score)
-                                          score))))
-         (t
-          (format t "~&Invalid input. Please enter a number between 1 and 5.~%")
-          (finish-output))))))
+       (if (valid-response-p response)
+           (return (if (string= response "back")
+                       :back
+                       (let ((score (case (parse-integer response)
+                                      (1 0)
+                                      (2 25)
+                                      (3 50)
+                                      (4 75)
+                                      (5 100))))
+                         (if inverse-scoring
+                             (- 100 score)
+                             score))))
+           (progn
+             (format t "~&Invalid input. Please enter a number between 1 and 5, or type 'back' to go to the previous question.~%")
+             (finish-output))))))
 
 (defun ask-questions (questions)
   "Ask a series of questions and return the responses, supporting backtracking."
