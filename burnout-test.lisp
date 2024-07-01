@@ -16,6 +16,7 @@
   (format t "    3. Sometimes~%")
   (format t "    4. Often~%")
   (format t "    5. Always~%")
+  (format t "Type 'back' to go to the previous question.~%")
   (format t "====================================~%"))
 
 (defun read-name ()
@@ -27,59 +28,82 @@
         "Anonymous"
         name)))
 
-(defun ask-question (question number inverse-scoring)
+(defun clear-screen ()
+  "Clears the terminal screen."
+  (format t "~c[2J~c[H" #\esc #\esc))
+
+(defun ask-question (question number &optional (inverse-scoring nil))
   "Prompt the user with a question and return a valid numeric response."
   (loop
-     (format t "~&~a~a~%    1. Never/almost never~%    2. Seldom~%    3. Sometimes~%    4. Often~%    5. Always~%Your answer: " number question)
+     (clear-screen)
+     (format t "~&~a~a~%    1. Never/almost never~%    2. Seldom~%    3. Sometimes~%    4. Often~%    5. Always~%Your answer (or type 'back' to go to the previous question): " number question)
      (finish-output)
      (let ((response (string-trim " " (read-line))))
-       (if (and (not (string= response ""))
-                (every #'digit-char-p response)
-                (let ((num (parse-integer response)))
-                  (and (>= num 1) (<= num 5))))
-           (return (let ((score (case (parse-integer response)
-                                  (1 0)
-                                  (2 25)
-                                  (3 50)
-                                  (4 75)
-                                  (5 100))))
-                     (if inverse-scoring
-                         (- 100 score)
-                         score)))
-           (progn
-             (format t "~&Invalid input. Please enter a number between 1 and 5.~%")
-             (finish-output))))))
+       (cond
+         ((string= response "back")
+          (return-from ask-question :back))
+         ((and (not (string= response ""))
+               (every #'digit-char-p response)
+               (let ((num (parse-integer response)))
+                 (and (>= num 1) (<= num 5))))
+          (return-from ask-question (let ((score (case (parse-integer response)
+                                                   (1 0)
+                                                   (2 25)
+                                                   (3 50)
+                                                   (4 75)
+                                                   (5 100))))
+                                      (if inverse-scoring
+                                          (- 100 score)
+                                          score))))
+         (t
+          (format t "~&Invalid input. Please enter a number between 1 and 5.~%")
+          (finish-output))))))
+
+(defun ask-questions (questions)
+  "Ask a series of questions and return the responses, supporting backtracking."
+  (let ((responses (make-array (length questions) :initial-element nil))
+        (i 0))
+    (loop while (< i (length questions))
+          for question-data = (nth i questions)
+          for question = (first question-data)
+          for number = (second question-data)
+          for inverse-scoring = (third question-data)
+          do (let ((response (ask-question question number inverse-scoring)))
+               (if (eq response :back)
+                   (when (> i 0)
+                     (setf i (1- i)))
+                   (progn
+                     (setf (aref responses i) response)
+                     (setf i (1+ i))))))
+    (coerce responses 'list)))
 
 (defun personal-burnout-questions ()
-  "Ask personal burnout questions and return the responses."
-  (list
-   (ask-question "How often do you feel tired?" "1." nil)
-   (ask-question "How often are you physically exhausted?" "2." nil)
-   (ask-question "How often are you emotionally exhausted?" "3." nil)
-   (ask-question "How often do you think: 'I can't take it anymore'?" "4." nil)
-   (ask-question "How often do you feel worn out?" "5." nil)
-   (ask-question "How often do you feel weak and susceptible to illness?" "6." nil)))
+  "Return a list of personal burnout questions."
+  (list (list "How often do you feel tired?" "1." nil)
+        (list "How often are you physically exhausted?" "2." nil)
+        (list "How often are you emotionally exhausted?" "3." nil)
+        (list "How often do you think: 'I can't take it anymore'?" "4." nil)
+        (list "How often do you feel worn out?" "5." nil)
+        (list "How often do you feel weak and susceptible to illness?" "6." nil)))
 
 (defun work-related-burnout-questions ()
-  "Ask work-related burnout questions and return the responses."
-  (list
-   (ask-question "Do you feel worn out at the end of the working day?" "7." nil)
-   (ask-question "Are you exhausted in the morning at the thought of another day at work?" "8." nil)
-   (ask-question "Do you feel that every working hour is tiring for you?" "9." nil)
-   (ask-question "Do you have enough energy for family and friends during leisure time? (inverse scoring)" "10." t)
-   (ask-question "Is your work emotionally exhausting?" "11." nil)
-   (ask-question "Does your work frustrate you?" "12." nil)
-   (ask-question "Do you feel burnt out because of your work?" "13." nil)))
+  "Return a list of work-related burnout questions."
+  (list (list "Do you feel worn out at the end of the working day?" "7." nil)
+        (list "Are you exhausted in the morning at the thought of another day at work?" "8." nil)
+        (list "Do you feel that every working hour is tiring for you?" "9." nil)
+        (list "Do you have enough energy for family and friends during leisure time? (inverse scoring)" "10." t)
+        (list "Is your work emotionally exhausting?" "11." nil)
+        (list "Does your work frustrate you?" "12." nil)
+        (list "Do you feel burnt out because of your work?" "13." nil)))
 
 (defun client-related-burnout-questions ()
-  "Ask client-related burnout questions and return the responses."
-  (list
-   (ask-question "Do you find it hard to work with clients?" "14." nil)
-   (ask-question "Does it drain your energy to work with clients?" "15." nil)
-   (ask-question "Do you find it frustrating to work with clients?" "16." nil)
-   (ask-question "Do you feel that you give more than you get back when you work with clients?" "17." nil)
-   (ask-question "Are you tired of working with clients?" "18." nil)
-   (ask-question "Do you sometimes wonder how long you will be able to continue working with clients?" "19." nil)))
+  "Return a list of client-related burnout questions."
+  (list (list "Do you find it hard to work with clients?" "14." nil)
+        (list "Does it drain your energy to work with clients?" "15." nil)
+        (list "Do you find it frustrating to work with clients?" "16." nil)
+        (list "Do you feel that you give more than you get back when you work with clients?" "17." nil)
+        (list "Are you tired of working with clients?" "18." nil)
+        (list "Do you sometimes wonder how long you will be able to continue working with clients?" "19." nil)))
 
 (defun calculate-average (responses)
   "Calculate the average score from the list of responses."
@@ -96,15 +120,16 @@
 
 (defun main ()
   "Main function for the burnout test program."
+  (clear-screen)
   (print-welcome-message)
   (let ((name (read-name)))
     (format t "~&Hello, ~a! Welcome to the Burnout Test Program.~%~%" name)
     (format t "Personal Burnout Questions:~%")
-    (let ((personal-responses (personal-burnout-questions)))
+    (let ((personal-responses (ask-questions (personal-burnout-questions))))
       (format t "~&Work-related Burnout Questions:~%")
-      (let ((work-responses (work-related-burnout-questions)))
+      (let ((work-responses (ask-questions (work-related-burnout-questions))))
         (format t "~&Client-related Burnout Questions:~%")
-        (let ((client-responses (client-related-burnout-questions)))
+        (let ((client-responses (ask-questions (client-related-burnout-questions))))
           ;; Calculate average scores for each category
           (let ((personal-average (calculate-average personal-responses))
                 (work-average (calculate-average work-responses))
