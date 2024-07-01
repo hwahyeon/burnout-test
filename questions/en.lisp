@@ -18,7 +18,7 @@
   (list (list "Do you feel worn out at the end of the working day?" "7." nil)
         (list "Are you exhausted in the morning at the thought of another day at work?" "8." nil)
         (list "Do you feel that every working hour is tiring for you?" "9." nil)
-        (list "Do you have enough energy for family and friends during leisure time? (inverse scoring)" "10." t)
+        (list "Do you have enough energy for family and friends during leisure time?" "10." t) ;(inverse scoring)
         (list "Is your work emotionally exhausting?" "11." nil)
         (list "Does your work frustrate you?" "12." nil)
         (list "Do you feel burnt out because of your work?" "13." nil)))
