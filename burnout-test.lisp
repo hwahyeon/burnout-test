@@ -4,12 +4,15 @@
 
 (in-package :burnout-test)
 
+;; Load the questions from a separate file
+(load "questions/en.lisp")
+
 (defun print-welcome-message ()
   "Prints the welcome message for the burnout test program."
   (format t "====================================~%")
   (format t "        Burnout Test Program         ~%")
   (format t "====================================~%")
-  (format t "~%Please answer the following 19 questions about your burnout level.~%")
+  (format t "~%Please answer the questions about your burnout level.~%")
   (format t "Respond with a number between 1 and 5 for each question:~%")
   (format t "    1. Never/almost never~%")
   (format t "    2. Seldom~%")
@@ -77,34 +80,6 @@
                      (setf i (1+ i))))))
     (coerce responses 'list)))
 
-(defun personal-burnout-questions ()
-  "Return a list of personal burnout questions."
-  (list (list "How often do you feel tired?" "1." nil)
-        (list "How often are you physically exhausted?" "2." nil)
-        (list "How often are you emotionally exhausted?" "3." nil)
-        (list "How often do you think: 'I can't take it anymore'?" "4." nil)
-        (list "How often do you feel worn out?" "5." nil)
-        (list "How often do you feel weak and susceptible to illness?" "6." nil)))
-
-(defun work-related-burnout-questions ()
-  "Return a list of work-related burnout questions."
-  (list (list "Do you feel worn out at the end of the working day?" "7." nil)
-        (list "Are you exhausted in the morning at the thought of another day at work?" "8." nil)
-        (list "Do you feel that every working hour is tiring for you?" "9." nil)
-        (list "Do you have enough energy for family and friends during leisure time? (inverse scoring)" "10." t)
-        (list "Is your work emotionally exhausting?" "11." nil)
-        (list "Does your work frustrate you?" "12." nil)
-        (list "Do you feel burnt out because of your work?" "13." nil)))
-
-(defun client-related-burnout-questions ()
-  "Return a list of client-related burnout questions."
-  (list (list "Do you find it hard to work with clients?" "14." nil)
-        (list "Does it drain your energy to work with clients?" "15." nil)
-        (list "Do you find it frustrating to work with clients?" "16." nil)
-        (list "Do you feel that you give more than you get back when you work with clients?" "17." nil)
-        (list "Are you tired of working with clients?" "18." nil)
-        (list "Do you sometimes wonder how long you will be able to continue working with clients?" "19." nil)))
-
 (defun calculate-average (responses)
   "Calculate the average score from the list of responses."
   (/ (reduce #'+ responses) (length responses)))
@@ -125,11 +100,11 @@
   (let ((name (read-name)))
     (format t "~&Hello, ~a! Welcome to the Burnout Test Program.~%~%" name)
     (format t "Personal Burnout Questions:~%")
-    (let ((personal-responses (ask-questions (personal-burnout-questions))))
+    (let ((personal-responses (ask-questions (questions-en:personal-burnout-questions))))
       (format t "~&Work-related Burnout Questions:~%")
-      (let ((work-responses (ask-questions (work-related-burnout-questions))))
+      (let ((work-responses (ask-questions (questions-en:work-related-burnout-questions))))
         (format t "~&Client-related Burnout Questions:~%")
-        (let ((client-responses (ask-questions (client-related-burnout-questions))))
+        (let ((client-responses (ask-questions (questions-en:client-related-burnout-questions))))
           ;; Calculate average scores for each category
           (let ((personal-average (calculate-average personal-responses))
                 (work-average (calculate-average work-responses))
