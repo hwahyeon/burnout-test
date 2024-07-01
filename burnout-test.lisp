@@ -4,9 +4,6 @@
 
 (in-package :burnout-test)
 
-;; Load the questions from a separate file
-(load "questions/en.lisp")
-
 (defun print-welcome-message ()
   "Prints the welcome message for the burnout test program."
   (format t "====================================~%")
@@ -126,16 +123,22 @@
   (let ((name (read-name)))
     (clear-screen)
     (print-cbi-intro)
-    (let ((country-code (read-input "Please enter your country code: ")))
-      ;; Load the questions based on country code (default to EN)
-      (load "questions/en.lisp")
+    (let* ((country-code (string-upcase (read-input "Please enter your country code: ")))
+           (package-suffix (case (intern country-code :keyword)
+                             (:DE "de")
+                             (:KR "kr")
+                             (:GR "gr")
+                             (t "en")))
+           (questions-package (intern (string-upcase (format nil "questions-~a" package-suffix)) :keyword)))
+      ;; Load the questions based on country code
+      (load (format nil "questions/~a.lisp" package-suffix))
       (format t "~&Hello, ~a! Welcome to the Burnout Test Program.~%~%" name)
       (format t "Personal Burnout Questions:~%")
-      (let ((personal-responses (ask-questions (questions-en:personal-burnout-questions))))
+      (let ((personal-responses (ask-questions (funcall (intern (string-upcase "personal-burnout-questions") questions-package)))))
         (format t "~&Work-related Burnout Questions:~%")
-        (let ((work-responses (ask-questions (questions-en:work-related-burnout-questions))))
+        (let ((work-responses (ask-questions (funcall (intern (string-upcase "work-related-burnout-questions") questions-package)))))
           (format t "~&Client-related Burnout Questions:~%")
-          (let ((client-responses (ask-questions (questions-en:client-related-burnout-questions))))
+          (let ((client-responses (ask-questions (funcall (intern (string-upcase "client-related-burnout-questions") questions-package)))))
             ;; Calculate average scores for each category
             (let ((personal-average (calculate-average personal-responses))
                   (work-average (calculate-average work-responses))
