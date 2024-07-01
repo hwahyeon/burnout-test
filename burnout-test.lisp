@@ -55,6 +55,12 @@
   "Clears the terminal screen."
   (format t "~c[2J~c[H" #\esc #\esc))
 
+(defun center-text (text)
+  "Centers text for display."
+  (let* ((width 40) ; assuming terminal width of 40 characters
+         (padding (max 0 (/ (- width (length text)) 2))))
+    (format nil "~v@{ ~a~}" padding text)))
+
 (defun valid-response-p (response)
   "Check if the response is valid (between 1 and 5 or 'back')."
   (or (string= response "back")
@@ -140,6 +146,10 @@
           (format t "~&Client-related Burnout Questions:~%")
           (let ((client-responses (ask-questions (funcall (intern (string-upcase "client-related-burnout-questions") questions-package)))))
             ;; Calculate average scores for each category
+            (clear-screen)
+            (format t "====================================~%")
+            (format t "        Test Results         ~%")
+            (format t "====================================~%")
             (let ((personal-average (calculate-average personal-responses))
                   (work-average (calculate-average work-responses))
                   (client-average (calculate-average client-responses)))
