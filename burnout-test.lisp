@@ -133,9 +133,11 @@
     (print-cbi-intro)
     (let* ((country-code (string-upcase (read-input "Please enter your country code: ")))
            (package-suffix (case (intern country-code :keyword)
-                             (:DE "de")
+                            ;  (:DE "de")
                              (:KR "kr")
                              (:GR "gr")
+                             (:RS "rs")
+                             (:MY "my")
                              (t "en")))
            (questions-package (intern (string-upcase (format nil "questions-~a" package-suffix)) :keyword)))
       ;; Load the questions based on country code
