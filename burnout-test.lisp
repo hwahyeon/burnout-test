@@ -32,7 +32,7 @@
   (format t "====================================~%")
   (format t "        Available CBI Versions         ~%")
   (format t "====================================~%")
-  (format t "Currently, this program offers the original CBI, a Korean version (K-CBI), a Greek version (CBI-gr), and a German version.~%")
+  (format t "Currently, this program offers the original CBI, a Korean version (K-CBI), a Greek version (CBI-gr), a Serbian version and a Malaysian version(CBI-M).~%")
   (format t "~%To proceed, enter:~%")
   ; (format t "- DE for the German version,~%")
   (format t "- KR for the Korean version,~%")
