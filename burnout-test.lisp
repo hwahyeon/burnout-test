@@ -6,9 +6,9 @@
 
 (defun print-welcome-message ()
   "Prints the welcome message for the burnout test program."
-  (format t "====================================~%")
-  (format t "        Burnout Test Program         ~%")
-  (format t "====================================~%")
+  (format t "==============================================~%")
+  (format t "             Burnout Test Program             ~%")
+  (format t "==============================================~%")
   (format t "~%")
   (format t "CBI (Copenhagen Burnout Inventory) is a tool used to measure~%")
   (format t "burnout levels. It is divided into three categories:~%")
@@ -25,13 +25,13 @@
   (format t "  5. Always~%")
   (format t "~%")
   (format t "Type 'back' to go to the previous question.~%")
-  (format t "====================================~%"))
+  (format t "==============================================~%"))
 
 (defun print-cbi-intro ()
   "Prints the introduction to the different versions of CBI available."
-  (format t "====================================~%")
-  (format t "        Available CBI Versions         ~%")
-  (format t "====================================~%")
+  (format t "==============================================~%")
+  (format t "            Available CBI Versions            ~%")
+  (format t "==============================================~%")
   (format t "Currently, this program offers the original CBI, a Korean version (K-CBI), a Greek version (CBI-gr), a Serbian version and a Malaysian version(CBI-M).~%")
   (format t "~%To proceed, enter:~%")
   ; (format t "- DE for the German version,~%")
@@ -40,7 +40,7 @@
   (format t "- RS for the Serbian version,~%")
   (format t "- MY for the Malaysian version,~%")
   (format t "- or press Enter for the original CBI.~%")
-  (format t "====================================~%"))
+  (format t "==============================================~%"))
 
 (defun read-input (prompt &optional (default ""))
   "Reads input from the user with a given prompt. Returns the input or a default value if the input is empty."
@@ -151,9 +151,9 @@
           (let ((client-responses (ask-questions (funcall (intern (string-upcase "client-related-burnout-questions") questions-package)))))
             ;; Calculate average scores for each category
             (clear-screen)
-            (format t "====================================~%")
-            (format t "        Test Results         ~%")
-            (format t "====================================~%")
+            (format t "==============================================~%")
+            (format t "                 Test Results                 ~%")
+            (format t "==============================================~%")
             (let ((personal-average (calculate-average personal-responses))
                   (work-average (calculate-average work-responses))
                   (client-average (calculate-average client-responses)))
@@ -163,7 +163,12 @@
                       work-average (interpret-cbi-score work-average))
               (format t "Client-related Burnout Average Score: ~,2f (~a)~%"
                       client-average (interpret-cbi-score client-average)))
+            (format t "~%")
             (format t "~&Thank you for completing the Burnout Test, ~a.~%~%" name)
+            (format t "This test should not be used as a substitute for professional diagnosis.~%")
+            (format t "For a comprehensive assessment, please consult a licensed psychologist, therapist, or other qualified healthcare provider.~%")
+            (format t "~%")
+            (format t "~%")
             (format t "Press any key to exit...")
             (finish-output)
             (read-line)))))))
