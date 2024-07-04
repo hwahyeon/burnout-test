@@ -57,12 +57,6 @@
   "Clears the terminal screen."
   (format t "~c[2J~c[H" #\esc #\esc))
 
-(defun center-text (text)
-  "Centers text for display."
-  (let* ((width 40) ; assuming terminal width of 40 characters
-         (padding (max 0 (/ (- width (length text)) 2))))
-    (format nil "~v@{ ~a~}" padding text)))
-
 (defun valid-response-p (response)
   "Check if the response is valid (between 1 and 5 or 'back')."
   (or (string= response "back")
