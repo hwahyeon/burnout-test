@@ -1,7 +1,8 @@
 (load "utils.lisp")
+(load "messages.lisp")
 
 (defpackage :burnout-test
-  (:use :cl :utils)
+  (:use :cl :utils :messages)
   (:export :main))
 
 (in-package :burnout-test)
