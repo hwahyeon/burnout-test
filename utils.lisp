@@ -1,8 +1,9 @@
 (defpackage :utils
   (:use :cl)
-  (:export :clear-screen :read-input :valid-response-p :print-welcome-message :print-cbi-intro :interpret-cbi-score :calculate-average :ask-question :ask-questions))
+  (:export :clear-screen :read-input :valid-response-p :print-welcome-message :print-cbi-intro :calculate-average :ask-question :ask-questions :interpret-cbi-score  :print-test-results))
 
 (in-package :utils)
+
 
 (defun clear-screen ()
   "Clears the terminal screen."
@@ -65,6 +66,8 @@
   (format t "==============================================~%"))
 
 
+
+
 (defun interpret-cbi-score (score)
   "Interpret the CBI score and print the corresponding message."
   (cond
@@ -121,3 +124,22 @@
                      (setf (aref responses i) response)
                      (setf i (1+ i))))))
     (coerce responses 'list)))
+
+
+(defun print-test-results (personal-average work-average client-average name)
+  "Prints the burnout test results."
+  (format t "==============================================~%")
+  (format t "                 Test Results                 ~%")
+  (format t "==============================================~%")
+  (format t "~&Personal Burnout Average Score: ~,2f (~a)~%"
+          personal-average (interpret-cbi-score personal-average))
+  (format t "Work-related Burnout Average Score: ~,2f (~a)~%"
+          work-average (interpret-cbi-score work-average))
+  (format t "Client-related Burnout Average Score: ~,2f (~a)~%"
+          client-average (interpret-cbi-score client-average))
+  (format t "~%")
+  (format t "~&Thank you for completing the Burnout Test, ~a.~%~%" name)
+  (format t "This test should not be used as a substitute for professional diagnosis.~%")
+  (format t "For a comprehensive assessment, please consult a licensed psychologist, therapist, or other qualified healthcare provider.~%")
+  (format t "~%")
+  (format t "~%"))
