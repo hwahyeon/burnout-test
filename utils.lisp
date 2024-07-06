@@ -26,14 +26,6 @@
              (and (>= num 1) (<= num 5))))))
 
 
-
-
-
-
-
-
-
-
 (defun interpret-cbi-score (score)
   "Interpret the CBI score and print the corresponding message."
   (cond
@@ -90,5 +82,4 @@
                      (setf (aref responses i) response)
                      (setf i (1+ i))))))
     (coerce responses 'list)))
-
 
