@@ -1,7 +1,8 @@
 (load "utils.lisp")
+(load "messages.lisp")
 
 (defpackage :burnout-test
-  (:use :cl :utils)
+  (:use :cl :utils :messages)
   (:export :main))
 
 (in-package :burnout-test)
@@ -28,7 +29,6 @@
            (questions-package (intern (string-upcase (format nil "questions-~a" package-suffix)) :keyword)))
       ;; Load the questions based on country code
       (load (format nil "questions/~a.lisp" package-suffix))
-      (format t "~&Hello, ~a! Welcome to the Burnout Test Program.~%~%" name)
       (format t "Personal Burnout Questions:~%")
       (let ((personal-responses (ask-questions (funcall (intern (string-upcase "personal-burnout-questions") questions-package)))))
         (format t "~&Work-related Burnout Questions:~%")
