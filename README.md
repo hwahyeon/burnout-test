@@ -7,6 +7,7 @@ This project is a Common Lisp program for the Copenhagen Burnout Inventory (CBI)
 - [Overview](#overview)
 - [Usage](#usage)
 - [Country-Specific Versions](#country-specific-versions)
+- [Important Note](#important-note)
 - [References](#references)
 
 ## Overview
@@ -40,6 +41,9 @@ The CBI has high internal reliability and effectively differentiates between occ
 5. **Malaysia**<sup>[5](#ref5)</sup>
    - The Malay version of the CBI (CBI-M) showed good factor structures and model fitness, supporting its construct validity (convergent and discriminant validity). However, one item (***"Do you have enough energy for family and friends during leisure time?"***) was removed due to validity issues, including gender bias.
 
+## Important Note
+
+**This tool is not a substitute for professional diagnosis and should not be used as such. If your results indicate a high level of burnout, or if you have concerns about your mental health, please consult a psychologist, psychiatrist, or other qualified healthcare provider.**
 
 ## References
 
