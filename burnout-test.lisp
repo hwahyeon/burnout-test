@@ -19,7 +19,11 @@
 
 (defun get-questions-package (country-code)
   "Get the questions package based on the country code."
-  (intern (string-upcase (format nil "questions-~a" country-code)) :keyword))
+  (intern (string-upcase (format nil "questions-~a"
+    (if (member (string-upcase country-code) '("EN" "KR" "GR" "RS" "MY") :test 'string=)
+        country-code
+        "EN")))
+        :keyword))
 
 (defun ask-all-questions (questions-package)
   "Ask all categories of questions and return the responses."
