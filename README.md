@@ -9,8 +9,8 @@ This project is a Common Lisp program for the Copenhagen Burnout Inventory (CBI)
 - [Country-Specific Versions](#country-specific-versions)
 - [References](#references)
 
-## Overview <sup>[1](#ref1)</sup>
-The Copenhagen Burnout Inventory (CBI) measures burnout across three dimensions: personal burnout, work-related burnout, and client-related burnout. Developed by Tage S. Kristensen et al. in 2005, the CBI is known for its strong reliability and validity.
+## Overview
+The Copenhagen Burnout Inventory (CBI) measures burnout across three dimensions: personal burnout, work-related burnout, and client-related burnout. Developed by Tage S. Kristensen et al. in 2005, the CBI is known for its strong reliability and validity.<sup>[1](#ref1)</sup>
 
 The CBI has high internal reliability and effectively differentiates between occupational groups. It correlates with other measures of fatigue and well-being and predicts outcomes such as sickness absence and intention to quit. 
 
