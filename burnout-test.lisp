@@ -44,9 +44,7 @@
                    (work-average (calculate-average work-responses))
                    (client-average (calculate-average client-responses)))
               (print-test-results personal-average work-average client-average name)
-              (format t "Press any key to exit...")
-              (finish-output)
-              (read-line))))))))
+              (press-any-key-to-exit))))))))
 
 ;; Code to create the executable
 (sb-ext:save-lisp-and-die "burnout-test.exe"

@@ -1,6 +1,6 @@
 (defpackage :utils
   (:use :cl)
-  (:export :clear-screen :read-input :valid-response-p :calculate-average :ask-question :ask-questions :interpret-cbi-score))
+  (:export :clear-screen :read-input :valid-response-p :calculate-average :ask-question :ask-questions :interpret-cbi-score :press-any-key-to-exit))
 
 (in-package :utils)
 
@@ -83,3 +83,8 @@
                      (setf i (1+ i))))))
     (coerce responses 'list)))
 
+(defun press-any-key-to-exit ()
+  "Prompt the user to press any key to exit."
+  (format t "Press any key to exit...")
+  (finish-output)
+  (read-line))
