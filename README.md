@@ -47,10 +47,10 @@ The CBI has high internal reliability and effectively differentiates between occ
 
 ## References
 
-1. <a id="ref1"></a>**Kristensen, T. S., Borritz, M., Villadsen, E., & Christensen, K. B. (2005). The Copenhagen Burnout Inventory: A new tool for the assessment of burnout. *Work & Stress, 19*(3), 192-207.** [Link](https://doi.org/10.1080/02678370500297720)
-2. <a id="ref2"></a>**강종수. (2022). 한국어판 코펜하겐소진척도(K-CBI)타당화 연구. *사회복지정책과 실천 (Social Welfare Policy and Practice)*, 8(1), 211-239.** [Link](https://doi.org/10.37342/swpp.2022.8.1.211)
-3. <a id="ref3"></a>**Papaefstathiou, E., Tsounis, A., Malliarou, M., & Sarafis, P. (2019). Translation and validation of the Copenhagen Burnout Inventory amongst Greek doctors. *Health Psychology Research, 7*(1).** [Link](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6763708/)
-4. <a id="ref4"></a>**Piperac, P., Todorovic, J., Terzic-Supic, Z., Maksimovic, A., Karic, S., Pilipovic, F., & Soldatovic, I. (2021). The Validity and Reliability of the Copenhagen Burnout Inventory for Examination of Burnout among Preschool Teachers in Serbia. *International Journal of Environmental Research and Public Health, 18*(13).** [Link](https://doi.org/10.3390/ijerph18136805)
-5. <a id="ref5"></a>**Chin, R. W. A., Chua, Y. Y., Chu, M. N., Mahadi, N. F., Wong, M. S., Yusoff, M. S. B., & Lee, Y. Y. (2018). Investigating validity evidence of the Malay translation of the Copenhagen Burnout Inventory. *Journal of Taibah University Medical Sciences, 13*(1), 1-9.** [Link](http://dx.doi.org/10.1016/j.jtumed.2017.06.003)
+1. <a id="ref1"></a>Kristensen, T. S., Borritz, M., Villadsen, E., & Christensen, K. B. (2005). The Copenhagen Burnout Inventory: A new tool for the assessment of burnout. *Work & Stress, 19*(3), 192-207. [Link](https://doi.org/10.1080/02678370500297720)
+2. <a id="ref2"></a>강종수. (2022). 한국어판 코펜하겐소진척도(K-CBI)타당화 연구. *사회복지정책과 실천 (Social Welfare Policy and Practice)*, 8(1), 211-239. [Link](https://doi.org/10.37342/swpp.2022.8.1.211)
+3. <a id="ref3"></a>Papaefstathiou, E., Tsounis, A., Malliarou, M., & Sarafis, P. (2019). Translation and validation of the Copenhagen Burnout Inventory amongst Greek doctors. *Health Psychology Research, 7*(1). [Link](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6763708/)
+4. <a id="ref4"></a>Piperac, P., Todorovic, J., Terzic-Supic, Z., Maksimovic, A., Karic, S., Pilipovic, F., & Soldatovic, I. (2021). The Validity and Reliability of the Copenhagen Burnout Inventory for Examination of Burnout among Preschool Teachers in Serbia. *International Journal of Environmental Research and Public Health, 18*(13). [Link](https://doi.org/10.3390/ijerph18136805)
+5. <a id="ref5"></a>Chin, R. W. A., Chua, Y. Y., Chu, M. N., Mahadi, N. F., Wong, M. S., Yusoff, M. S. B., & Lee, Y. Y. (2018). Investigating validity evidence of the Malay translation of the Copenhagen Burnout Inventory. *Journal of Taibah University Medical Sciences, 13*(1), 1-9. [Link](http://dx.doi.org/10.1016/j.jtumed.2017.06.003)
 
 
