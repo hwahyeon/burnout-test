@@ -1,6 +1,12 @@
 (load "utils.lisp")
 (load "messages.lisp")
 
+(load "questions/en.lisp")
+(load "questions/kr.lisp")
+(load "questions/gr.lisp")
+(load "questions/rs.lisp")
+(load "questions/my.lisp")
+
 (defpackage :burnout-test
   (:use :cl :utils :messages)
   (:export :main))
@@ -11,17 +17,9 @@
   "Prompt the user to enter their name and return it as a string. Default to 'Anonymous' if no input is provided."
   (read-input "Please enter your name: " "Anonymous"))
 
-(defun load-questions (country-code)
-  "Load the appropriate questions based on the country code."
-  (let* ((package-suffix (case (intern country-code :keyword)
-                           (:KR "kr")
-                           (:GR "gr")
-                           (:RS "rs")
-                           (:MY "my")
-                           (t "en")))
-         (questions-path (format nil "questions/~a.lisp" package-suffix)))
-    (load questions-path)
-    (intern (string-upcase (format nil "questions-~a" package-suffix)) :keyword)))
+(defun get-questions-package (country-code)
+  "Get the questions package based on the country code."
+  (intern (string-upcase (format nil "questions-~a" country-code)) :keyword))
 
 (defun ask-all-questions (questions-package)
   "Ask all categories of questions and return the responses."
@@ -41,7 +39,7 @@
     (clear-screen)
     (print-cbi-intro)
     (let* ((country-code (string-upcase (read-input "Please enter your country code: ")))
-           (questions-package (load-questions country-code)))
+           (questions-package (get-questions-package country-code)))
       (multiple-value-bind (personal-responses work-responses client-responses)
           (ask-all-questions questions-package)
         ;; Calculate average scores for each category
