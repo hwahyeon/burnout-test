@@ -2,10 +2,13 @@
 
 This project is a Common Lisp program for the Copenhagen Burnout Inventory (CBI), providing versions for South Korea, Greece, Serbia, Malaysia, and the original CBI. Each version has slightly different questions to ensure reliability and validity specific to each country's cultural, linguistic, and social context.
 
+
+
 ## Table of Contents
 
 - [Overview](#overview)
 - [Usage](#usage)
+- [Download](#download)
 - [Country-Specific Versions](#country-specific-versions)
 - [Important Note](#important-note)
 - [References](#references)
@@ -22,6 +25,9 @@ The CBI has high internal reliability and effectively differentiates between occ
 3. Enter the country code corresponding to your location.
 4. Answer the questions on a scale from 1 to 5.
 5. Receive your burnout assessment.
+
+## Download
+[Download v2.0.0](https://github.com/hwahyeon/burnout-test/releases/tag/v2.0.0)
 
 ## Country-Specific Versions
 
