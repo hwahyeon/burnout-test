@@ -59,4 +59,5 @@ The CBI has high internal reliability and effectively differentiates between occ
 4. <a id="ref4"></a>Piperac, P., Todorovic, J., Terzic-Supic, Z., Maksimovic, A., Karic, S., Pilipovic, F., & Soldatovic, I. (2021). The Validity and Reliability of the Copenhagen Burnout Inventory for Examination of Burnout among Preschool Teachers in Serbia. *International Journal of Environmental Research and Public Health, 18*(13). [Link](https://doi.org/10.3390/ijerph18136805)
 5. <a id="ref5"></a>Chin, R. W. A., Chua, Y. Y., Chu, M. N., Mahadi, N. F., Wong, M. S., Yusoff, M. S. B., & Lee, Y. Y. (2018). Investigating validity evidence of the Malay translation of the Copenhagen Burnout Inventory. *Journal of Taibah University Medical Sciences, 13*(1), 1-9. [Link](http://dx.doi.org/10.1016/j.jtumed.2017.06.003)
 
-
+---
+[![WarningLogo](https://www.lisperati.com/lisplogo_warning2_256.png)](https://www.lisperati.com/logo.html)
