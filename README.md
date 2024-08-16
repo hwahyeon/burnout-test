@@ -27,7 +27,10 @@ The CBI has high internal reliability and effectively differentiates between occ
 5. Receive your burnout assessment.
 
 ## Download
-[Download v2.0.0](https://github.com/hwahyeon/burnout-test/releases/tag/v2.0.0)
+[Download for Windows](https://github.com/hwahyeon/burnout-test/releases/download/v2.1.0/burnout-test.exe)
+> Tested on Windows 11
+
+For detailed release notes and version history, see the [Release Notes](https://github.com/hwahyeon/burnout-test/releases).
 
 ## Country-Specific Versions
 
