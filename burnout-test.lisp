@@ -53,9 +53,3 @@
                (client-average (calculate-average client-responses)))
           (print-test-results personal-average work-average client-average name)
           (press-any-key-to-exit))))))
-
-;; Code to create the executable
-(sb-ext:save-lisp-and-die "burnout-test.exe"
-                          :executable t
-                          :toplevel 'burnout-test:main
-                          :purify t)
