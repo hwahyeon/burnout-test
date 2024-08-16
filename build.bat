@@ -1,3 +1,3 @@
 @echo off
-sbcl --load "burnout-test.lisp"
+sbcl --load "build-windows.lisp"
 pause
