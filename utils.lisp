@@ -44,25 +44,27 @@
 (defun ask-question (question number &optional (inverse-scoring nil))
   "Prompt the user with a question and return a valid numeric response."
   (loop
-     (clear-screen)
-     (format t "~&~a~a~%    1. Never/almost never~%    2. Seldom~%    3. Sometimes~%    4. Often~%    5. Always~%Your answer (or type 'back' to go to the previous question): " number question)
-     (finish-output)
-     (let ((response (string-trim " " (read-line))))
-       (if (valid-response-p response)
-           (return (if (string= response "back")
-                       :back
-                       (let ((score (case (parse-integer response)
-                                      (1 0)
-                                      (2 25)
-                                      (3 50)
-                                      (4 75)
-                                      (5 100))))
-                         (if inverse-scoring
-                             (- 100 score)
-                             score))))
-           (progn
-             (format t "~&Invalid input. Please enter a number between 1 and 5, or type 'back' to go to the previous question.~%")
-             (finish-output))))))
+    (clear-screen)
+    (format t "~&~a~a~%    1. Never/almost never~%    2. Seldom~%    3. Sometimes~%    4. Often~%    5. Always~%Your answer (or type 'back' to go to the previous question): " number question)
+    (finish-output)
+    (let ((response (string-trim " " (read-line))))
+      (if (string= response "back")
+          (return :back)
+          (let* ((parsed-response (ignore-errors (parse-integer response :junk-allowed t)))
+                 (valid (and (integerp parsed-response)
+                              (<= 1 parsed-response 5)))
+                 (score (case parsed-response
+                          (1 0)
+                          (2 25)
+                          (3 50)
+                          (4 75)
+                          (5 100))))
+            (if valid
+                (return (if inverse-scoring
+                            (- 100 score)
+                            score))
+                ;; If the input is invalid → loop again
+                ))))))
 
 
 (defun ask-questions (questions)
